@@ -28,7 +28,7 @@ Second, add the following code in app_controller.php
 
 ## Application Maintenace ##
 
-Add the following code in bootstrap.php
+Add the following code in bootstrap.php when maintanance status
 
     <?php
         Configure::write('Maintenance.enable', true);
