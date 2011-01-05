@@ -1,5 +1,7 @@
 # Maintenance plugin for CakePHP #
 
+![maintenance.png](/fusic/maintenance/raw/master/documents/maintenance.png)
+
 ## Feature ##
 
 * Redirect maintenance page
