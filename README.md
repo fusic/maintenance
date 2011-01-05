@@ -51,15 +51,13 @@ Add the following code in bootstrap.php
     <?php
         Configure::write('Maintenance.enable', true);
 
----
-
 #### file ####
 
 Or, put app/tmp/maintanance file.
 
 ### Timer ###
 
-If you want set maintenance start datetime or end datetime, Write `start_datetime,end_datetime` in app/tmp/maintanance
+If you want set maintenance start datetime or end datetime, Write `start_datetime,end_datetime` in app/tmp/maintanance file.
 
 #### Example1: Maintenance 2011/1/1 ~ 2011/1/3 ####
 
