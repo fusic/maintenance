@@ -61,12 +61,15 @@ class MaintenanceComponent extends Object {
      * @return
      */
     public function setTimer($start = '', $end = ''){
-        $start_time = date_parse($start);
-        $end_time = date_parse($end);
-        if ($start && !empty($start_time['errors'])) {
+        $start_date = date_parse($start);
+        $end_date = date_parse($end);
+        if ($start && !empty($start_date['errors'])) {
             return false;
         }
-        if ($end && !empty($end_time['errors'])) {
+        if ($end && !empty($end_date['errors'])) {
+            return false;
+        }
+        if (mktime($start_date['hour'], $start_date['minute'], $start_date['second'], $start_date['month'], $start_date['day'], $start_date['year']) > mktime($end_date['hour'], $end_date['minute'], $end_date['second'], $end_date['month'], $end_date['day'], $end_date['year'])) {
             return false;
         }
         if (!$this->awake()) {
