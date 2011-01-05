@@ -27,16 +27,22 @@ Second, add the following code in app_controller.php
 
 ## Usage ##
 
-## Application Maintenace ##
+### Application Maintenace ###
 
-Add the following code in bootstrap.php when maintanance status
+When you set maintenance statu to your applicatoin,
+
+#### bootstrap ####
+
+Add the following code in bootstrap.php
 
     <?php
         Configure::write('Maintenance.enable', true);
 
-Or, make app/tmp/maintanance file.
+#### file ####
 
-## Timer ##
+Or, put app/tmp/maintanance file.
+
+### Timer ###
 
 If you want set maintenance start datetime or end datetime, Write `start_datetime,end_datetime` in app/tmp/maintanance
 
@@ -48,7 +54,7 @@ Example2: Maintenance 2011/12/28 ~
 
     2011-12-28 00:00:00,
 
-Example2: Maintenance ~ 2011/3/31 12:00
+Example3: Maintenance ~ 2011/3/31 12:00
 
     ,2011-03-31 12:00:00
 
