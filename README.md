@@ -33,3 +33,22 @@ Add the following code in bootstrap.php when maintanance status
 
     <?php
         Configure::write('Maintenance.enable', true);
+
+Or, make app/tmp/maintanance file.
+
+## Timer ##
+
+If you want set maintenance start datetime or end datetime, Write `start_datetime,end_datetime` in app/tmp/maintanance
+
+Example1: Maintenance 2011/1/1 ~ 2011/1/3
+
+    2011-01-01 00:00:00,2011-01-03 23:59:59
+
+Example2: Maintenance 2011/12/28 ~
+
+    2011-12-28 00:00:00,
+
+Example2: Maintenance ~ 2011/3/31 12:00
+
+    ,2011-03-31 12:00:00
+
