@@ -13,8 +13,8 @@ class MaintenanceComponent extends Object {
     var $components = array('RequestHandler');
 
     public $maintenanceUrl;
-    public $allowed = array();
-    public $allowIp = array();
+    public $allowedIp = array();
+    public $allowedAction = array();
 
     public function __construct() {
         parent::__construct();
@@ -34,10 +34,10 @@ class MaintenanceComponent extends Object {
         if ($maintenanceEnable === true) {
             // maintenance status
 
-            if ( !$this->isAllowed($this->controller->params)
+            if ( !$this->isAllowedAction($this->controller->params)
                  && strstr(Router::url('', true), $controller->webroot)
                  && Router::url('', true) != Router::url($maintenanceUrl, true)
-                 && !in_array($clientIp, (array)$this->allowIp)) {
+                 && !in_array($clientIp, (array)$this->allowedIp)) {
                 $controller->redirect($maintenanceUrl);
             }
         } else {
@@ -50,16 +50,16 @@ class MaintenanceComponent extends Object {
     }
 
     /**
-     * isAllowed
+     * isAllowedAction
      *
      * @param $params
      * @return
      */
-    public function isAllowed($params){
-        if (!array_key_exists($params['controller'], $this->allowed)) {
+    public function isAllowedAction($params){
+        if (!array_key_exists($params['controller'], $this->allowedAction)) {
             return false;
         }
-        $actions = (array) $this->allowed[$params['controller']];
+        $actions = (array) $this->allowedAction[$params['controller']];
         if ($actions === array('*')) {
             return true;
         }

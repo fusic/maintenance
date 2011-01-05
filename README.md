@@ -3,7 +3,8 @@
 ## Feature ##
 
 * Redirect maintenace page
-* Allow IP
+* Allow IP setting
+* Allow action setting
 
 ## Installaion ##
 
@@ -18,8 +19,8 @@ Second, add the following code in app_controller.php
                   'maintenanceUrl' => array(
                      'controller' => 'public',
                      'action' => 'maintenance'),
-                  'allowIp' => array('127.0.0.1'), // allowed IP address when maintanance status
-                  'allowed' => array('posts' => array('index')) // allowed action when maintanance status
+                  'allowedIp' => array('127.0.0.1'), // allowed IP address when maintanance status
+                  'allowedAction' => array('posts' => array('index')) // allowed action when maintanance status
                 )
              );
         }
