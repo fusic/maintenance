@@ -1,8 +1,8 @@
-# Maintenance Plugin for CakePHP #
+# Maintenance plugin for CakePHP #
 
 ## Feature ##
 
-* Redirect maintenace page
+* Redirect maintenance page
 * Allow IP setting
 * Allow action setting
 
@@ -31,6 +31,10 @@ When maintenance status, this setting allow
 * full access from `127.0.0.1`
 * access `index` action within `posts` controller.
 * access all action within `users` controller.
+
+And
+
+* redirect to `maintenanceUrl`.
 
 ## Usage ##
 
@@ -67,3 +71,30 @@ If you want set maintenance start datetime or end datetime, Write `start_datetim
 
     ,2011-03-31 12:00:00
 
+### Methods ###
+
+#### Maintenance::doMaintenance() ####
+Set maintenance status now.
+
+#### Maintenance::setTimer(start_time, end_time) ####
+Set maintenance timer.
+
+#### Maintenance::awake() ####
+Awake maintenance status.
+
+
+## License ##
+
+The MIT Lisence
+
+Copyright (c) 2010 Fusic Co., Ltd. (http://fusic.co.jp)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+## Author ##
+
+Shintaro Sugimoto
