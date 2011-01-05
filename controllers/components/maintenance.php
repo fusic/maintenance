@@ -1,14 +1,4 @@
 <?php
-  /**
-   * Maintenance plugin for CakePHP.
-   *
-   * Copyright (c) by Shintaro Sugimoto
-   *
-   * Licensed under The MIT License
-   * Redistributions of files must retain the above copyright notice.
-   *
-   * @license http://www.opensource.org/licenses/mit-license.php The MIT License
-   */
 class MaintenanceComponent extends Object {
     var $components = array('RequestHandler');
 
@@ -51,6 +41,53 @@ class MaintenanceComponent extends Object {
                 $controller->redirect('/');
             }
         }
+    }
+
+    /**
+     * doMaintenance
+     * Set maintenance status now
+     *
+     * @return
+     */
+    public function doMaintenance(){
+        return $this->setTimer();
+    }
+
+    /**
+     * setTimer
+     * Set maintenance timer
+     *
+     * @param $start_time, $end_time
+     * @return
+     */
+    public function setTimer($start = '', $end = ''){
+        $start_time = date_parse($start);
+        $end_time = date_parse($end);
+        if ($start && !empty($start_time['errors'])) {
+            return false;
+        }
+        if ($end && !empty($end_time['errors'])) {
+            return false;
+        }
+        if (!$this->awake()) {
+            return false;
+        }
+        $file = new File($this->statusFilePath);
+        return $file->write($start . ',' . $end);
+    }
+
+    /**
+     * awake
+     * Awake maintenance status
+     *
+     * @return
+     */
+    public function awake(){
+        if (file_exists($this->statusFilePath)) {
+            $file = new File($this->statusFilePath);
+            return $file->delete();
+        }
+        return true;
     }
 
     /**
