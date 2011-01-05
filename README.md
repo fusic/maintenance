@@ -20,10 +20,17 @@ Second, add the following code in app_controller.php
                      'controller' => 'public',
                      'action' => 'maintenance'),
                   'allowedIp' => array('127.0.0.1'), // allowed IP address when maintanance status
-                  'allowedAction' => array('posts' => array('index')) // allowed action when maintanance status
+                  'allowedAction' => array('posts' => array('index'),
+                                           'users' => array('*')) // allowed action when maintanance status
                 )
              );
         }
+
+When maintenance status, this setting allow 
+
+* full access from `127.0.0.1`
+* access `index` action within `posts` controller.
+* access all action within `users` controller.
 
 ## Usage ##
 
