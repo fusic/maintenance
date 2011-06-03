@@ -6,6 +6,7 @@ class MaintenanceComponent extends Object {
     public $allowedIp = array();
     public $allowedAction = array();
     public $statusFilePath;
+    public $redirectStatus = 307;
 
     public function __construct() {
         parent::__construct();
@@ -32,7 +33,7 @@ class MaintenanceComponent extends Object {
                  && strstr(Router::url('', true), $controller->webroot)
                  && Router::url('', true) != Router::url($maintenanceUrl, true)
                  && !in_array($clientIp, (array)$this->allowedIp)) {
-                $controller->redirect($maintenanceUrl);
+                $controller->redirect($maintenanceUrl, $this->redirectStatus);
             }
         } else {
             // on service
