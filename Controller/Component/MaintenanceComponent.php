@@ -1,36 +1,32 @@
 <?php
-class MaintenanceComponent extends Object {
-    var $components = array('RequestHandler');
+class MaintenanceComponent extends Component {
 
-    public $maintenanceUrl;
+    public $maintenanceUrl = null;
     public $allowedIp = array();
     public $allowedAction = array();
-    public $statusFilePath;
+    public $statusFilePath = null;
     public $redirectStatus = 307;
 
-    public function __construct() {
-        parent::__construct();
-    }
+    public $controller;
 
-    public function initialize(&$controller, $settings = array()) {
-        if (empty($settings['maintenanceUrl'])) {
+    public function initialize($controller) {
+        if (empty($this->maintenanceUrl)) {
             return true;
         }
-        if (empty($settings['statusFilePath'])) {
-            $settings['statusFilePath'] = TMP . 'maintenance';
+        if (empty($this->statusFilePath)) {
+            $this->statusFilePath = TMP . 'maintenance';
         }
 
         $this->controller = $controller;
-        $this->_set($settings);
 
         $maintenanceUrl = Router::url($this->maintenanceUrl, true);
-        $clientIp = $this->RequestHandler->getClientIP();
+        $clientIp = $controller->request->clientIp();
         $maintenanceEnable = $this->isMaintenance();
         if ($maintenanceEnable === true) {
             // maintenance status
 
-            if ( !$this->isAllowedAction($this->controller->params)
-                 && strstr(Router::url('', true), $controller->webroot)
+            if ( !$this->isAllowedAction($controller->request->params)
+                 && strstr(Router::url('', true), $controller->request->webroot)
                  && Router::url('', true) != Router::url($maintenanceUrl, true)
                  && !in_array($clientIp, (array)$this->allowedIp)) {
                 $controller->redirect($maintenanceUrl, $this->redirectStatus);
