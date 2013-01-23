@@ -1,4 +1,5 @@
 <?php
+App::uses('File', 'Utility');
 
 class MaintenanceComponent extends Component {
 
