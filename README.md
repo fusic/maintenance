@@ -2,6 +2,8 @@
 
 ![maintenance.png](documents/maintenance.png)
 
+* When you use this　plugin in CakePHP1.3, please see another branches[1.3]. 
+
 ## Feature ##
 
 * Redirect maintenance page
@@ -14,11 +16,14 @@ First, put `maintenance’ directory on app/Plugin in your CakePHP application.
 
 Second, load this plugin in Config/bootstrap.php
 
+```php
     <?php
         CakePlugin::load('Maintenance');
+```
 
 Finally, add the following code in Controller/AppController.php
 
+```php
     <?php
         class AppController extends Controller {
             public $components = array(
@@ -32,6 +37,7 @@ Finally, add the following code in Controller/AppController.php
                 )
              );
         }
+```
 
 When maintenance status, this setting allow 
 
@@ -53,8 +59,10 @@ When you set maintenance status to your applicatoin,
 
 Add the following code in bootstrap.php
 
+```php
     <?php
         Configure::write('Maintenance.enable', true);
+```
 
 #### file ####
 
