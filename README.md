@@ -1,6 +1,6 @@
-# Maintenance plugin for CakePHP #
+# Maintenance plugin for CakePHP2.x #
 
-![maintenance.png](/fusic/maintenance/raw/master/documents/maintenance.png)
+![maintenance.png](documents/maintenance.png)
 
 ## Feature ##
 
@@ -12,7 +12,12 @@
 
 First, put `maintenance’ directory on app/Plugin in your CakePHP application.
 
-Second, add the following code in Controller/AppController.php
+Second, load this plugin in Config/bootstrap.php
+
+    <?php
+        CakePlugin::load('Maintenance');
+
+Finally, add the following code in Controller/AppController.php
 
     <?php
         class AppController extends Controller {
