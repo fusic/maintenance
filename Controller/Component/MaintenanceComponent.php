@@ -15,7 +15,7 @@ class MaintenanceComponent extends Component {
 
 	public $controller;
 
-	public function initialize($controller) {
+	public function initialize(Controller $controller) {
 		if (empty($this->maintenanceUrl)) {
 			return true;
 		}
