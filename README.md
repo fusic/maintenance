@@ -14,6 +14,7 @@ First, put `maintenance’ directory on app/plugins in your CakePHP application.
 
 Second, add the following code in app_controller.php
 
+```php
     <?php
         class AppController extends Controller {
             var $components = array(
@@ -27,6 +28,7 @@ Second, add the following code in app_controller.php
                 )
              );
         }
+```
 
 When maintenance status, this setting allow 
 
@@ -48,8 +50,10 @@ When you set maintenance status to your applicatoin,
 
 Add the following code in bootstrap.php
 
+```php
     <?php
         Configure::write('Maintenance.enable', true);
+```
 
 #### file ####
 
