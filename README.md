@@ -10,13 +10,13 @@
 
 ## Installaion ##
 
-First, put `maintenance’ directory on app/plugins in your CakePHP application.
+First, put `maintenance’ directory on app/Plugin in your CakePHP application.
 
-Second, add the following code in app_controller.php
+Second, add the following code in Controller/AppController.php
 
     <?php
         class AppController extends Controller {
-            var $components = array(
+            public $components = array(
                'Maintenance.Maintenance' => array(
                   'maintenanceUrl' => array(
                      'controller' => 'public',
