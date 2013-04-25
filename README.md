@@ -1,6 +1,6 @@
 # Maintenance plugin for CakePHP #
 
-![maintenance.png](/fusic/maintenance/raw/master/documents/maintenance.png)
+![maintenance.png](documents/maintenance.png)
 
 ## Feature ##
 
