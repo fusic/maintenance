@@ -1,0 +1,23 @@
+{
+    "name": "fusic/Maintenance",
+    "description": "Maintenance plugin for CakePHP",
+    "type": "cakephp-plugin",
+    "require": {
+        "php": ">=5.5.9",
+        "cakephp/cakephp": ">=3.3.2 <4.0.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Maintenance\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Maintenance\\Test\\": "tests",
+            "Cake\\Test\\": "./vendor/cakephp/cakephp/tests"
+        }
+    }
+}
