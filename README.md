@@ -66,7 +66,7 @@ Add the following code in bootstrap.php
 
 #### file ####
 
-Or, put app/tmp/maintanance file.
+Or, put app/tmp/maintenance file.
 
 ### Timer ###
 
