@@ -69,10 +69,12 @@ class MaintenanceMiddleware
         $view->_ext = $ext;
         $bodyString = $view->render($templateName);
 
-        $body = $response->withHeader('Content-Type', $contentType)
-            ->withStatus($statusCode)
-            ->getBody();
-        $body->write($bodyString);
+        $response = $response
+            ->withHeader('Content-Type', $contentType)
+            ->withStatus($statusCode);
+        $response
+            ->getBody()
+            ->write($bodyString);
 
         return $response;
     }
