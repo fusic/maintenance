@@ -16,16 +16,18 @@ composer require fusic/maintenance
 // src/Application.php
 <?php
 
+// Add use
+use Maintenance\Middleware\MaintenanceMiddleware;
+
     public function middleware($middleware)
     {
         $middleware
             // Add Maintenance Plugin
-            ->add(new MaintenanceMiddleware())
+            ->add(MaintenanceMiddleware::class)            
             
-            
-            ->add(new ErrorHandlerMiddleware(Configure::read('Error.exceptionRenderer')))
-            ->add(new AssetMiddleware())
-            ->add(new RoutingMiddleware());
+            ->add(ErrorHandlerMiddleware::class)
+            ->add(AssetMiddleware::class)
+            ->add(RoutingMiddleware::class);
 
         return $middleware;
     }
