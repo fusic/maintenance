@@ -1,5 +1,5 @@
 {
-    "name": "fusic/Maintenance",
+    "name": "fusic/maintenance",
     "description": "Maintenance plugin for CakePHP",
     "type": "cakephp-plugin",
     "require": {
