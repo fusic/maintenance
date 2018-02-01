@@ -46,3 +46,26 @@ touch tmp/maintenance
 ```
 
 ## Config
+### useXForwardedFor
+
+If your system is behind a reverse proxy like load balancer that adds X-Forwarded-For header, set useXForwardedFor as true.
+
+```php
+// src/Application.php
+use Maintenance\Middleware\MaintenanceMiddleware;
+
+    public function middleware($middleware)
+    {
+        $middleware
+            ->add(new MaintenanceMiddleware([
+                'allowIp' => [
+                    '127.0.0.1',
+                ],
+                'useXForwardedFor' => true,
+            ]))
+            ->add(ErrorHandlerMiddleware::class)
+            ->add(AssetMiddleware::class)
+            ->add(RoutingMiddleware::class);
+        return $middleware;
+    }
+```
