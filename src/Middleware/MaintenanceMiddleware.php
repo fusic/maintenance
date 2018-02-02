@@ -106,14 +106,16 @@ class MaintenanceMiddleware
             $ips = explode(',', $params['HTTP_X_FORWARDED_FOR']);
             return trim(array_pop($ips));
         } else {
-            return $params['REMOTE_ADDR'];
+            return is_set($params['REMOTE_ADDR']) ? $params['REMOTE_ADDR'] : null;
         }
     }
 
     private function isAllowIp($request)
     {
-        $params = $request->getServerParams();
         $myIpAddress = $this->getMyIpAddress($request);
+        if (is_null($myIpAddress)) {
+            return false;
+        }
 
         $ipAddressList = $this->config('allowIp');
         if (empty($ipAddressList)) {
