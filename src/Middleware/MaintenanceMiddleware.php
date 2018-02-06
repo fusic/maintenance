@@ -28,7 +28,9 @@ class MaintenanceMiddleware
         'ctpFileName' => 'maintenance',
         'ctpExtension' => '.ctp',
 
-        'contentType' => 'text/html'
+        'contentType' => 'text/html',
+
+        'useXForwardedFor' => false,
     ];
 
     public function __construct($config = [])
@@ -95,10 +97,25 @@ class MaintenanceMiddleware
         return true;
     }
 
-    private function isAllowIp($request)
+    private function getMyIpAddress($request)
     {
         $params = $request->getServerParams();
-        $myIpAddress = $params['REMOTE_ADDR'];
+
+        // X-Forwarded-Forはカンマ区切り。一番近いReverse proxyで付与されたIPを末尾から取得する。
+        if ($this->config('useXForwardedFor') && isset($params['HTTP_X_FORWARDED_FOR'])) {
+            $ips = explode(',', $params['HTTP_X_FORWARDED_FOR']);
+            return trim(array_pop($ips));
+        } else {
+            return isset($params['REMOTE_ADDR']) ? $params['REMOTE_ADDR'] : null;
+        }
+    }
+
+    private function isAllowIp($request)
+    {
+        $myIpAddress = $this->getMyIpAddress($request);
+        if (is_null($myIpAddress)) {
+            return false;
+        }
 
         $ipAddressList = $this->config('allowIp');
         if (empty($ipAddressList)) {
