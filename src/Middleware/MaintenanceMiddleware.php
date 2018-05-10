@@ -81,10 +81,31 @@ class MaintenanceMiddleware
         return $response;
     }
 
+    /**
+     * @return bool
+     * @author gorogoroyasu
+     */
+    private function checkStatusFile()
+    {
+        $path = $this->getConfig('statusFilePath');
+        if (is_string($path)) {
+            $path = [$path];
+        }
+        foreach($path as $p) {
+            $fullPath = $p . $this->getConfig('statusFileName');
+            $ret = file_exists($fullPath);
+            if ($ret === true) {
+                return true;
+            }
+        }
+        
+        return false;
+    }
+
+
     private function isMaintenance($request)
     {
-        $fullPath = $this->config('statusFilePath') . $this->config('statusFileName');
-        $ret = file_exists($fullPath);
+        $ret = $this->checkStatusFile();
         if ($ret === false) {
             return false;
         }
