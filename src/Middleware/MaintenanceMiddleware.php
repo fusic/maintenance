@@ -35,7 +35,7 @@ class MaintenanceMiddleware
 
     public function __construct($config = [])
     {
-        $this->config($config);
+        $this->setConfig($config);
     }
 
     public function __invoke($request, $response, $next)
@@ -56,12 +56,12 @@ class MaintenanceMiddleware
         $cakeRequest = Request::createFromGlobals();
         $builder = new ViewBuilder();
 
-        $className = $this->config('className');
-        $templateName = $this->config('ctpFileName');
-        $templatePath = $this->config('templatePath');
-        $ext = $this->config('ctpExtension');
-        $contentType = $this->config('contentType');
-        $statusCode = $this->config('statusCode');
+        $className = $this->getConfig('className');
+        $templateName = $this->getConfig('ctpFileName');
+        $templatePath = $this->getConfig('templatePath');
+        $ext = $this->getConfig('ctpExtension');
+        $contentType = $this->getConfig('contentType');
+        $statusCode = $this->getConfig('statusCode');
 
         $view = $builder
             ->className($className)
@@ -123,7 +123,7 @@ class MaintenanceMiddleware
         $params = $request->getServerParams();
 
         // X-Forwarded-Forはカンマ区切り。一番近いReverse proxyで付与されたIPを末尾から取得する。
-        if ($this->config('useXForwardedFor') && isset($params['HTTP_X_FORWARDED_FOR'])) {
+        if ($this->getConfig('useXForwardedFor') && isset($params['HTTP_X_FORWARDED_FOR'])) {
             $ips = explode(',', $params['HTTP_X_FORWARDED_FOR']);
             return trim(array_pop($ips));
         } else {
