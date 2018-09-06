@@ -53,7 +53,7 @@ class MaintenanceMiddleware
 
     private function execute($response)
     {
-        $cakeRequest = Request::createFromGlobals();
+        $cakeRequest = \Cake\Http\ServerRequestFactory::fromGlobals();
         $builder = new ViewBuilder();
 
         $className = $this->getConfig('className');
@@ -64,9 +64,9 @@ class MaintenanceMiddleware
         $statusCode = $this->getConfig('statusCode');
 
         $view = $builder
-            ->className($className)
-            ->templatePath(Inflector::camelize($templatePath))
-            ->layout(false)
+            ->setClassName($className)
+            ->setTemplatePath(Inflector::camelize($templatePath))
+            ->setLayout(false)
             ->build([], $cakeRequest);
         $view->_ext = $ext;
         $bodyString = $view->render($templateName);
@@ -138,7 +138,7 @@ class MaintenanceMiddleware
             return false;
         }
 
-        $ipAddressList = $this->config('allowIp');
+        $ipAddressList = $this->getConfig('allowIp');
         if (empty($ipAddressList)) {
             return false;
         }
