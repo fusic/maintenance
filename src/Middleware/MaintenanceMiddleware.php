@@ -67,7 +67,6 @@ class MaintenanceMiddleware
             ->setLayout(false)
             ->disableAutoLayout()
             ->build([], $cakeRequest);
-
         $bodyString = $view->render($templateName);
 
         $response = $response
