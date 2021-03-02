@@ -25,8 +25,7 @@ class MaintenanceMiddleware
         'statusFileName' => 'maintenance',
         'statusCode' => 503,
 
-        'ctpFileName' => 'maintenance',
-        'ctpExtension' => '.ctp',
+        'templateFileName' => 'maintenance',
 
         'contentType' => 'text/html',
 
@@ -57,9 +56,8 @@ class MaintenanceMiddleware
         $builder = new ViewBuilder();
 
         $className = $this->getConfig('className');
-        $templateName = $this->getConfig('ctpFileName');
+        $templateName = $this->getConfig('templateFileName');
         $templatePath = $this->getConfig('templatePath');
-        $ext = $this->getConfig('ctpExtension');
         $contentType = $this->getConfig('contentType');
         $statusCode = $this->getConfig('statusCode');
 
@@ -67,8 +65,9 @@ class MaintenanceMiddleware
             ->setClassName($className)
             ->setTemplatePath(Inflector::camelize($templatePath))
             ->setLayout(false)
+            ->disableAutoLayout()
             ->build([], $cakeRequest);
-        $view->_ext = $ext;
+
         $bodyString = $view->render($templateName);
 
         $response = $response
